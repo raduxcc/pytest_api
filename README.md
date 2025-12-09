@@ -65,13 +65,15 @@ After test runs, test reports are generated in either:
 - *<root_folder>/tests/test_reports* when tests are being ran from IDE
 
 
-Test run GIF:
+### Test run GIF (alternative URL https://postimg.cc/sMB1jFmd)
 
-[![api-tests-run-light.gif](https://i.postimg.cc/9Qb9BCqM/api-tests-run-light.gif)](https://postimg.cc/sMB1jFmd)
+![Test run demo](./demo/test_run.gif)
 
 
-Test report screenshots:
+### Test report screenshots:
 
-CLI[![api-cli-run.png](https://i.postimg.cc/RF0nYK9H/api-cli-run.png)](https://postimg.cc/gwfJXwxz)
+CLI (alternative URL https://postimg.cc/gwfJXwxz)
+![CLI screenshot](./demo/cli_run_ss.png)
 
-HTML[![api-html-report-example.png](https://i.postimg.cc/3R6Z7Y8Q/api-html-report-example.png)](https://postimg.cc/ygmRyq3L)
+HTML (alternative URL) https://postimg.cc/ygmRyq3L
+![HTML example screenshot](./demo/html_report_ss.png)
