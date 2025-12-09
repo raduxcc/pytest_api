@@ -46,6 +46,12 @@ After test runs, test reports are generated in either:
 - *<root_folder>/test_reports* if tests are running from CLI
 - *<root_folder>/tests/test_reports* when tests are being ran from IDE
 
+
+Test run GIF:
+
+[![api-tests-run-light.gif](https://i.postimg.cc/9Qb9BCqM/api-tests-run-light.gif)](https://postimg.cc/sMB1jFmd)
+
+
 Test report screenshots:
 
 CLI[![api-cli-run.png](https://i.postimg.cc/RF0nYK9H/api-cli-run.png)](https://postimg.cc/gwfJXwxz)
