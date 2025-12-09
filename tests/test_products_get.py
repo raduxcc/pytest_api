@@ -3,12 +3,12 @@ from utils.validators import ResponseValidators
 
 
 @pytest.mark.parametrize(
-    "method, endpoint, payload, schema_fixture, expected_status",
+    "method, endpoint, schema_fixture, expected_status",
     [
-        ("GET", "/products", None, "product_schema_fixture", 200),
-        ("GET", "/products/1", None, "product_schema_fixture", 200),
-        ("GET", "/products/thisisinvalid", None, "product_schema_fixture", 400),
-        ("GET", "/products/99534834723", None, "product_schema_fixture", 404),
+        ("GET", "/products", "product_schema_fixture", 200),
+        ("GET", "/products/1", "product_schema_fixture", 200),
+        ("GET", "/products/thisisinvalid", "product_schema_fixture", 400),
+        ("GET", "/products/995348347233", "product_schema_fixture", 404),
     ],
     ids=[
         "valid_get_all_products",
@@ -17,21 +17,18 @@ from utils.validators import ResponseValidators
         "not_found_product_id",
     ]
 )
-def test_get(client, request, method, endpoint, payload, schema_fixture, expected_status):
+def test_get(client, request, method, endpoint, schema_fixture, expected_status):
 
     # Get schema fixture dynamically
     schema = request.getfixturevalue(schema_fixture)
     response = client.get(endpoint)
 
-    ### Assertions
-    ResponseValidators.validate_content_type(response, "application/json")
-    actual_response = response.json()
-    # Response code
-    assert response.status_code == expected_status
+    ### Soft assertions
+    # Status code
+    ResponseValidators.validate_status_code(response, expected_status)
 
-    # Schema validation
-    if isinstance(actual_response, list):
-        for item in actual_response:
-            assert item == schema
-    else:
-        assert actual_response == schema
+    # Content type
+    ResponseValidators.validate_content_type(response)
+
+    # Schema validation for non-empty responses
+    ResponseValidators.validate_schema(response, schema)

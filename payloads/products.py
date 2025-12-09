@@ -1,3 +1,5 @@
+
+# @todo: add payloads through fixtures that work with parametrize
 class ProductPayloads:
 
     empty_payload = ''

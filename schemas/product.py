@@ -15,7 +15,20 @@ product_schema = schema(
     }
 )
 
-# ### Documentation https://pypi.org/project/pytest-schema/
+product_post_bad_request_schema = schema(
+    {
+        "error": str, #"Bad request"
+        "message": str, #"Request body could not be read properly.",
+    }
+)
+
+product_post_valid_request_schema = schema(
+    {
+        "id": int,
+    }
+)
+
+# ### Doc example for advanced validation https://pypi.org/project/pytest-schema/
 # # single user schema
 # user = {
 #     # id must be int
