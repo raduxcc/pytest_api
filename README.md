@@ -1,4 +1,4 @@
-Pytest-based lightweight API testing framework
+# Pytest-based lightweight API testing framework
 
 Libraries used:
 - __pytest-check__ for soft assertions
@@ -10,7 +10,25 @@ Current tests are covering some of the API endpoints generously offered by https
 - GET a single product
 - Add a new product (POST)
 
-Test cases:
+## Project Structure:
+
+```
+pytestAPI/
+├── schemas/                   # Response schemas for validation
+│   └── product.py             
+├── test_reports/              
+│   └── report.html            # Auto-generated HTML test report
+├── tests/                     
+│   ├── test_products_get.py   # Test file for GET product endpoints
+│   └── test_products_post.py  # Test file for POST product endpoints
+├── utils/                     
+│   ├── validators.py          # Assertion methods (status, content-type, schema)
+│   ├── client.py              # API client wrapper (GET/POST requests)
+│   └── conftest.py            # Pytest fixtures (client, schema fixtures)
+├── pytest.ini                 # Pytest configuration file
+```
+
+## Test cases:
 
 | Test Case ID | Title                                  | Method | Endpoint                | Input / Payload                   | Schema Fixture                            | Expected Status | Steps                                                                                                                                      | Notes                               |
 | ------------ | -------------------------------------- | ------ | ----------------------- | --------------------------------- | ----------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
@@ -36,7 +54,7 @@ Assertions:
 
 Failures are collected and displayed in the pytest-html report without stopping test execution.
 
-Running tests:
+## Running tests:
 1) install dependencies:
 >pip install -r requirements.txt
 2) to run all tests:
