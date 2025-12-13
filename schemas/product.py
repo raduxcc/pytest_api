@@ -6,7 +6,7 @@ product_schema = schema(
         "title": str,
         "price": Or(int, float),
         "description": str,
-        "category": str,
+        "category": And(str, lambda s: 3 <= len(s) <= 20),
         "image": str,
         "rating": {
             "count": int,

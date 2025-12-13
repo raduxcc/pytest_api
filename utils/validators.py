@@ -30,16 +30,29 @@ class ResponseValidators:
         with check.check(" -- content size check"):
             content_size = len(response.content)
             if content_size == 0 :
-                check.fail("Response size is zero. Skipping schema validation")
+                check.fail("Empty response. Skipping schema validation")
                 return
 
+    @staticmethod
+    def validate_response_time(response, max_ms=300):
+        with check.check(" -- response time check"):
+            response_time_ms = response.elapsed.total_seconds() * 1000
+
+            check.is_true(
+                response_time_ms <= max_ms,
+                (
+                    f"Response time exceeded threshold\n"
+                    f"Expected ≤ {max_ms} ms\n"
+                    f"Actual   = {response_time_ms:.2f} ms\n"
+                )
+            )
 
     @staticmethod
     def validate_schema(response, expected_schema):
         with check.check(" -- schema check"):
             content_size = len(response.content)
             if content_size == 0 :
-                check.fail("Response size is zero. Skipping schema validation")
+                check.fail("Empty response. Skipping schema validation\n")
                 return
 
             response_json = response.json()
