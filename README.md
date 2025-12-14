@@ -23,9 +23,9 @@ pytestAPI/
 │   └── test_products_post.py  # Test file for POST product endpoints
 ├── utils/                     
 │   ├── validators.py          # Assertion methods (status, content-type, schema)
-│   ├── client.py              # API client wrapper (GET/POST requests)
-│   └── conftest.py            # Pytest fixtures (client, schema fixtures)
+│   └── client.py              # API client wrapper (GET/POST requests)
 ├── pytest.ini                 # Pytest configuration file
+└── conftest.py                # Pytest fixtures (client, schema fixtures)
 ```
 
 ## Assertions
@@ -50,15 +50,6 @@ After test runs, test reports are generated in either:
 - *<root_folder>/tests/test_reports* when tests are being ran from IDE
 
 
-### Test run GIF (alternative URL https://postimg.cc/sMB1jFmd)
+### Test run GIF
 
 ![Test run demo](./demo/test_run.gif)
-
-
-### Test report screenshots:
-
-CLI (alternative URL https://postimg.cc/gwfJXwxz)
-![CLI screenshot](./demo/cli_run_ss.png)
-
-HTML (alternative URL) https://postimg.cc/ygmRyq3L
-![HTML example screenshot](./demo/html_report_ss.png)
