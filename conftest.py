@@ -2,10 +2,10 @@ import pytest
 from schemas.product import product_schema
 from schemas.product import product_post_bad_request_schema
 from schemas.product import product_post_valid_request_schema
-from config.envs import ENVIRONMENTS, DEFAULT_ENV
+from utils.config import ENVIRONMENTS, DEFAULT_ENV
 from utils.client import APIClient
 
-# module-level storage for report metadata
+
 _CURRENT_ENV = None
 _CURRENT_TIMEOUT = None
 
@@ -43,7 +43,7 @@ def pytest_configure(config):
 # add environment details to pytest-html report
 def pytest_html_results_summary(prefix, summary, postfix):
     prefix.extend([
-        f"<p><strong>Environment:</strong> {_CURRENT_ENV}</p>",
+        f"\n<p><strong>Environment:</strong> {_CURRENT_ENV}</p>",
         f"<p><strong>Timeout (seconds):</strong> {_CURRENT_TIMEOUT}</p>",
     ])
 
@@ -53,15 +53,14 @@ def pytest_runtest_makereport(item):
     outcome = yield
     report = outcome.get_result()
 
-    if report.when == "call":
-        # attach api response if available
-        response = item.funcargs.get("response", None)
-        if response:
-            report.extra = getattr(report, "extra", [])
-            from pytest_html import extras
-            report.extra.append(
-                extras.text(response.text, name=f"Response: {item.name}")
-            )
+    # attach api response if available
+    response = item.funcargs.get("response", None)
+    if response:
+        report.extra = getattr(report, "extra", [])
+        from pytest_html import extras
+        report.extra.append(
+            extras.text(response.text, name=f"Response: {item.name}")
+        )
 
 
 @pytest.fixture(scope="session")

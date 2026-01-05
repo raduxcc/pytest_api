@@ -3,7 +3,7 @@ from utils.validators import ResponseValidators
 
 
 @pytest.mark.parametrize(
-    "method, endpoint, schema_fixture, expected_status, max_reponse_ms",
+    "method, endpoint, schema_fixture, expected_status, max_response_ms",
     [
         ("GET", "/products", "product_schema_fixture", 200, 250),
         ("GET", "/products/1", "product_schema_fixture", 200, 200),
@@ -17,7 +17,7 @@ from utils.validators import ResponseValidators
         "not_found_product_id",
     ]
 )
-def test_get(client, request, method, endpoint, schema_fixture, expected_status, max_reponse_ms):
+def test_get(client, request, method, endpoint, schema_fixture, expected_status, max_response_ms):
 
     # Get schema fixture dynamically
     schema = request.getfixturevalue(schema_fixture)
@@ -31,7 +31,7 @@ def test_get(client, request, method, endpoint, schema_fixture, expected_status,
     ResponseValidators.validate_content_type(response)
 
     # Response time validation
-    ResponseValidators.validate_response_time(response, max_reponse_ms)
+    ResponseValidators.validate_response_time(response, max_response_ms)
 
     # Schema validation for non-empty responses
     ResponseValidators.validate_schema(response, schema)
